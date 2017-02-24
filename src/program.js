@@ -13,7 +13,7 @@ let calculateDistanceWithRssi = rssi => {
     return Math.pow(ratio,10);
   } else {
     var distance = (0.89976) * Math.pow(ratio, 7.7095) + 0.111;
-    return distance;
+    return Math.round(distance*100)/100;
   }
 };
 
@@ -41,6 +41,7 @@ let transformCheckpoint = (checkpoint) => {
 };
 
 let showCheckpoint = (checkpoint, index) => {
+
   console.log(chalk.green('CHECKPOINT'), chalk.yellow(index + 1));
   return _.map(checkpoint, (value, key) => {
     if(checkpoint[key]){
@@ -55,9 +56,12 @@ let showCheckpoint = (checkpoint, index) => {
 let run = () => {
   let checkpoints = checkpointsService.getCheckpoints();
     
-  checkpoints.map((checkpoint, index) => {
-    showCheckpoint(transformCheckpoint(checkpoint), index);
-  });
+  return _.chain(checkpoints)
+  .map((checkpoint, index) => {
+    return showCheckpoint(transformCheckpoint(checkpoint), index);
+  })
+  .sort('')
+  .value();
 
 };
 
