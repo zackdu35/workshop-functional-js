@@ -50,13 +50,41 @@ let showCheckpoint = (checkpoint, index) => {
   console.log('\n');
 };
 
+
+
+//MY
+
+// CHECKPOINT 7
+// ID 26c38b665eb542b88647b9e9bd6b58af
+// UUID 26c38b665eb542b88647b9e9bd6b58af
+// ADDRESS unknown
+// ADDRESSTYPE unknown
+// CONNECTABLE false
+// ADVERTISEMENT { localName: undefined,
+//   txPowerLevel: undefined,
+//   manufacturerData: undefined,
+//   serviceData: [],
+//   serviceUuids: [] }
+// RSSI -53
+// SERVICES null
+// STATE disconnected
+
+//OLD
+// CHECKPOINT 6
+// UUID c6136bcb1dad43928894b6aa9b0f3097
+// CONNECTABLE true
+// STATE disconnected
+// SERVICEDATA []
+// SERVICEUUIDS [ 'fe9a' ]
+// DISTANCE 2.799255610623347
+
 let run = () => {
   let checkpoints = checkpointsService.getCheckpoints();
-  for (var i = 0; i < checkpoints.length; i++) {
-    let checkpoint = checkpoints[i];
-    transformCheckpoint(checkpoint);
-    showCheckpoint(checkpoint, i);
-  }
+    
+  checkpoints.map((checkpoint, index) => {
+    showCheckpoint(transformCheckpoint(checkpoint), index);
+  });
+
 };
 
 module.exports = {
