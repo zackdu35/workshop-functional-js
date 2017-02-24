@@ -60,7 +60,6 @@ let run = () => {
   .map((checkpoint, index) => {
     return showCheckpoint(transformCheckpoint(checkpoint), index);
   })
-  .sort('')
   .value();
 
 };
