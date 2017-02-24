@@ -7,7 +7,7 @@ var testData = {
   uuid: 'whataw0nd3rful1d',
   address: 'unknown',
   addressType: 'unknown',
-  connectable: false,
+  connectable: true,
   advertisement: {
     localName: undefined,
     txPowerLevel: undefined,
@@ -30,10 +30,12 @@ describe('Function transformCheckpoint', function() {
 });
 
 
+var mutatedData = transformCheckpoint(testData);
+
 describe('Function transformCheckpoint', function() {
 
   it('Function transformCheckpoint parameter should be mutated', function() {
-    expect(transformCheckpoint(testData.connectable)).to.eql.true;
+    expect(mutatedData).to.not.eql.testData;
   });
 
 });

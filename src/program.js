@@ -32,7 +32,7 @@ let transformCheckpoint = (checkpoint) => {
     delete checkpoint.rssi;
     delete checkpoint.services;
     // Everything is ok
-    return true;
+    return checkpoint;
   } else {
     return false;
   }
