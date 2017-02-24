@@ -1,5 +1,5 @@
 let chalk = require('chalk');
-
+let _ = require('lodash');
 let checkpointsService = require('./staticCheckpoints');
 
 
@@ -42,41 +42,15 @@ let transformCheckpoint = (checkpoint) => {
 
 let showCheckpoint = (checkpoint, index) => {
   console.log(chalk.green('CHECKPOINT'), chalk.yellow(index + 1));
-  for (var property in checkpoint) {
-    if (checkpoint.hasOwnProperty(property)) {
-      console.log(chalk.cyan(property.toUpperCase()), checkpoint[property]);
+  return _.map(checkpoint, (value, key) => {
+    if(checkpoint[key]){
+      console.log(chalk.cyan(key.toUpperCase()), value);
     }
-  }
+  });
   console.log('\n');
+
 };
 
-
-
-//MY
-
-// CHECKPOINT 7
-// ID 26c38b665eb542b88647b9e9bd6b58af
-// UUID 26c38b665eb542b88647b9e9bd6b58af
-// ADDRESS unknown
-// ADDRESSTYPE unknown
-// CONNECTABLE false
-// ADVERTISEMENT { localName: undefined,
-//   txPowerLevel: undefined,
-//   manufacturerData: undefined,
-//   serviceData: [],
-//   serviceUuids: [] }
-// RSSI -53
-// SERVICES null
-// STATE disconnected
-
-//OLD
-// CHECKPOINT 6
-// UUID c6136bcb1dad43928894b6aa9b0f3097
-// CONNECTABLE true
-// STATE disconnected
-// SERVICEDATA []
-// SERVICEUUIDS [ 'fe9a' ]
-// DISTANCE 2.799255610623347
 
 let run = () => {
   let checkpoints = checkpointsService.getCheckpoints();
