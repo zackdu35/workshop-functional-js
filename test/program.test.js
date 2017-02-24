@@ -39,3 +39,12 @@ describe('Function transformCheckpoint', function() {
   });
 
 });
+
+
+describe('Function transformCheckpoint', function() {
+
+  it('Function transformCheckpoint parameter should have a different reference', function() {
+    expect(mutatedData).to.not.equal.testData;
+  });
+
+});
